@@ -8,7 +8,8 @@ class Scene2 extends Phaser.Scene {
 		this.background = this.add.image(0,0,"background");
 		this.background.setOrigin(0,0);
 		
-		this.add.text(20, 732, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
+		this.add.text(20, 670, "MUSIC: OFF");
+		this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
 		
 		// BABKA 1
 		this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -92,7 +93,7 @@ class Scene2 extends Phaser.Scene {
 			delay: 0
 			
 		}
-		this.music.play(musicConfig);
+		//this.music.play(musicConfig);
 	
 	}
 	killBabka2(pointer, gameObject) {
