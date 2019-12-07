@@ -1,30 +1,92 @@
 class Scene2 extends Phaser.Scene {
 	constructor() {
+		
 		super("playGame");
 		
 	}
 	create() {
-
+		
+		var store = [];
+		
+		// SETUP TŁA
 		this.background = this.add.image(0,0,"background");
 		this.background.setOrigin(0,0);
 		
+		// STATUS BAR
 		this.add.text(20, 670, "MUSIC: OFF");
 		this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
 		
 		// BABKA 1
 		this.babka1 = this.add.sprite(1170, 490, "b1");
+		
+		
+		
+		// //  Store some data about this Gem:
+
+		// gem.setDataEnabled();
+
+		// //  Whenever a data value is first set it will dispatch a setdata event
+		// gem.on('setdata', function (gameObject, key, value) {
+
+			// list.push(key);
+
+			// text2.setText(list);
+
+		// });
+
+		// gem.data.set('name', 'Red Gem Stone');
+		// gem.data.set('level', 2);
+		// gem.data.set('owner', 'Link');
+
+		// //  Whenever a data value is updated it will dispatch a changedata event
+		// gem.on('changedata', function (gameObject, key, value) {
+
+			// text.setText([
+				// 'Name: ' + gem.data.get('name'),
+				// 'Level: ' + gem.data.get('level'),
+				// 'Value: ' + gem.data.get('gold') + ' gold',
+				// 'Owner: ' + gem.data.get('owner')
+			// ]);
+
+		// });
+		
+		// //  Change the 'value' property when the mouse is clicked
+		// this.input.on('pointerdown', function () {
+
+			// var gold = gem.data.get('gold');
+
+			// if (!gold)
+			// {
+				// //  Set the value, this will emit the `setdata` and `changedata` events
+				// gem.data.set('gold', 50);
+
+				// text.setText([
+					// 'Name: ' + gem.data.get('name'),
+					// 'Level: ' + gem.data.get('level'),
+					// 'Value: ' + gem.data.get('gold') + ' gold',
+					// 'Owner: ' + gem.data.get('owner')
+				// ]);
+			// }
+			// else
+			// {
+				// //  Set the value, this will call the 'after' callback
+				// gem.data.set('gold', gold + 50);
+			// }
+
+		// });
+		
 		this.babka1.setOrigin(0,0);
 		this.babka1.flipX = true;
-		// this.babka1.setScale(1);
 		this.anims.create({
+			
 			key: "b1_anim",
 			frames: this.anims.generateFrameNumbers("b1"),
 			frameRate: 10,
 			repeat: -1,
 
-			
 		});
 		this.anims.create({
+			
 			key: "b1_kill_anim",
 			frames: this.anims.generateFrameNumbers("b1kill"),
 			frameRate: 10,
@@ -40,14 +102,15 @@ class Scene2 extends Phaser.Scene {
 		this.babka2.flipX = true;
 		// this.babka2.setScale(1);
 		this.anims.create({
+			
 			key: "b2_anim",
 			frames: this.anims.generateFrameNumbers("b2"),
 			frameRate: 10,
 			repeat: -1,
 
-			
 		});
 		this.anims.create({
+			
 			key: "b2_kill_anim",
 			frames: this.anims.generateFrameNumbers("b2kill"),
 			frameRate: 10,
@@ -58,66 +121,73 @@ class Scene2 extends Phaser.Scene {
 		this.babka2.play("b2_anim");
 		this.babka2.setInteractive();
 		
-		// this.tweens.add({
-			// targets: babka1,
-			// duration: 2000,
-			// angle: 360,
-			// ease: 'Quad.easeInOut',
-			// repeat: -1,
-			// yoyo: true
-			
-		// });
-		
+		// WYSWIETLANIE SAMOCHODU
 		this.furka = this.add.image(387, 515, "car");
 		this.furka.setOrigin(0,0);
 		
+		// WYSWIETLANIE SAMOCHODOW
 		this.furki = this.add.image(0, 508, "cars");
 		this.furki.setOrigin(0,0);
 		
+		// WYSWIETLANIE SMIETNIKA
 		this.smietnik = this.add.image(550, 430, "bin");
 		this.smietnik.setOrigin(0,0);
 		
-		this.input.on('gameobjectdown', this.killBabkaOld, this);
+		// EVENT ODPULANIA MOHERA
+		this.input.on('gameobjectdown', this.killBot, this);
 		
+		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
 		
+		// SETUP MUZYKI
 		this.music = this.sound.add("music");	
 		
 		var musicConfig = {
+			
 			mute: false,
 			volume: 0.2,
 			rate: 1,
 			detune: 0,
 			seek: 0,
-			loop: false,
+			loop: true,
 			delay: 0
 			
 		}
-		//this.music.play(musicConfig);
+		this.music.play(musicConfig);
 	
 	}
-	killBabka2(pointer, gameObject) {
+	// ARKOWA LEPSZA METODA ODPULANIA MOHERA - POPRAWIC BY DZIALALA
+	killBotArka(pointer, gameObject) {
+		
 		var key = gameObject.texture.key;
 		gameObject.setTexture(key + 'kill');
 		gameObject.play(key + '_anim');
-		//this.decapitationSound.play();
+		this.decapitationSound.play();
 		console.log('ZATLUKLES MOHERA!');
 	
 	}
-	killBabkaOld(pointer, gameObject) {
+	// MOJA SZTYWNA METODA ODPULANIA MOHERA
+	killBot(pointer, gameObject) {
+		
 		gameObject.setTexture('b1kill');
 		gameObject.play('b1_kill_anim');
 		this.decapitationSound.play();
 		console.log('ZATLUKLES MOHERA!');
 	
 	}
+	// SZTYWNA SCIEZKA RUCHU MOHERA1
 	path1(babka, speed){
+		
 		babka.x -= 2.5*speed; 
 		babka.y += 0.7*speed; 
+		
 		if (babka.x < 964) {
+			
 			babka.x -= speed;
 			babka.y -= 0.7*speed;
+			
 				if (babka.x < 608) {
+					
 					babka.x -= 1.2*speed;
 					babka.y -= 0.2*speed;
 			
@@ -126,52 +196,70 @@ class Scene2 extends Phaser.Scene {
 		}
 				
 	}
+	// SZTYWNA SCIEZKA RUCHU MOHERA2
 	path2(babka, speed){
+		
 		babka.x -= 2*speed; 
-		babka.y += 1.5*speed; 
+		babka.y += 1.5*speed;
+		
 		if (babka.x < 1095) {
+			
 			babka.x -= 0.5*speed;
 			babka.y -= 1.5*speed;
+			
 				if (babka.x < 850) {
+					
 					babka.x -= 1.2*speed;
 					babka.y -= 0.5*speed;
+					
 					if (babka.x < 625) {
+						
 						babka.x -= 1*speed;
 						babka.y -= 0.1*speed;
 						//babka1.rotate = true;
 			
 					}
+					
 				}
 			
 		}
 				
 	}
+	// METODA LOSUJACA SCIEZKI DLA BOTA - NIE DZIALA
 	randomIntFromInterval(min, max) {
+		
 		return Math.floor(Math.random() * (max - min + 1) + min);
 		
 	}
  	update() {
-		// console.log('start: ' + pathNumber);
+		// METODA LOSUJACA SCIEZKI DLA BOTA - NIE DZIALA C.D.
 		if (pathNumber == "x") {
+			
 			pathNumber = this.randomIntFromInterval(0, 1);
 			
 		}
+		// UKRYWANIE BABKI2 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka2.x < 374) {
+			
 			this.babka2.visible = false;
 			
 		}
+		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
+			
 			this.babka1.visible = false;
 			
 		} else {
 			
 			//console.log('po losowaniu: ' + pathNumber);
 			if (pathNumber == 0) {
+				
 				this.path1(this.babka2, 1);
 				this.path2(this.babka1, 1);
 				//console.log('wybrany path 1');
 				
 			} else {
+				
 				this.path2(this.babka1, 1);
 				this.path1(this.babka2, 1);
 				//console.log('wybrany path 2');

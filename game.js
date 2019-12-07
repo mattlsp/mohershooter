@@ -7,5 +7,5 @@ var config = {
 }
 var pathNumber = "x";
 var musicSwitch = true;
-let table = [];
+let store = [];
 var game = new Phaser.Game(config);
