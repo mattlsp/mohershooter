@@ -107,10 +107,10 @@ class Scene2 extends Phaser.Scene {
 			
 		}
 		var musicStatus = false;
-		//this.music.play(musicConfig);
+		this.music.play(musicConfig);
 		
 		
-		var keys = [
+/*		var keys = [
 		
 			'Press A for Music',
 			'Press B for Drums',
@@ -142,7 +142,7 @@ class Scene2 extends Phaser.Scene {
 			
 			this.music.play(musicConfig);
 			
-		});
+		});*/
 		
 		//https://phaser.io/examples/v3/view/audio/web-audio/play-sound-on-keypress
 		//https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
