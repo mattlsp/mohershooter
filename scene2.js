@@ -4,137 +4,90 @@ class Scene2 extends Phaser.Scene {
 		super("playGame");
 		
 	}
-	create() {
+    create() {
+
+        var store = [];
+
+        // SETUP TŁA
+        this.background = this.add.image(0, 0, "background");
+        this.background.setOrigin(0, 0);
+
+        // STATUS BAR
+        this.add.text(20, 670, "MUSIC: ?");
+        this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
+
+        // BABKA 1
+        this.babka1 = this.add.sprite(1170, 490, "b1");
+
+        this.babka1.setOrigin(0, 0);
+        this.babka1.flipX = true;
+        this.anims.create({
+
+            key: "b1_anim",
+            frames: this.anims.generateFrameNumbers("b1"),
+            frameRate: 10,
+            repeat: -1,
+
+        });
+        this.anims.create({
+
+            key: "b1_kill_anim",
+            frames: this.anims.generateFrameNumbers("b1kill"),
+            frameRate: 10,
+            repeat: 0,
+            hideOnComplete: true
+
+        });
+        this.babka1.play("b1_anim");
+        this.babka1.setInteractive();
+
+        // BABKA 2
+        this.babka2 = this.add.sprite(1171, 480, "b2");
+
+        this.babka2.flipX = true;
+        this.anims.create({
+
+            key: "b2_anim",
+            frames: this.anims.generateFrameNumbers("b2"),
+            frameRate: 10,
+            repeat: -1,
+
+        });
+        this.anims.create({
+
+            key: "b2_kill_anim",
+            frames: this.anims.generateFrameNumbers("b2kill"),
+            frameRate: 10,
+            repeat: 0,
+            hideOnComplete: true
+
+        });
+        this.babka2.play("b2_anim");
+        this.babka2.setInteractive();
+
+        // WYSWIETLANIE SPRITE'U SAMOCHODU
+        this.furka = this.add.image(387, 515, "car");
+        this.furka.setOrigin(0, 0);
+
+        // WYSWIETLANIE SPRITE'U WIELU SAMOCHODOW
+        this.furki = this.add.image(0, 508, "cars");
+        this.furki.setOrigin(0, 0);
+
+        // WYSWIETLANIE SPRITE'U SMIETNIKA
+        this.smietnik = this.add.image(550, 430, "bin");
+        this.smietnik.setOrigin(0, 0);
+
+        // EVENT ODPULANIA MOHERA
+        let odpulony = false;
+        if (odpulony == false) {
+            this.input.on('gameobjectdown', this.killBot, this)
+        }
+        else {
+            console.log("bot juz odpulony")
+        }
+        
+        
 		
-		var store = [];
-		
-		// SETUP TŁA
-		this.background = this.add.image(0,0,"background");
-		this.background.setOrigin(0,0);
-		
-		// STATUS BAR
-		this.add.text(20, 670, "MUSIC: OFF");
-		this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
-		
-		// BABKA 1
-		this.babka1 = this.add.sprite(1170, 490, "b1");
-		
-		
-		
-		// //  Store some data about this Gem:
-
-		// gem.setDataEnabled();
-
-		// //  Whenever a data value is first set it will dispatch a setdata event
-		// gem.on('setdata', function (gameObject, key, value) {
-
-			// list.push(key);
-
-			// text2.setText(list);
-
-		// });
-
-		// gem.data.set('name', 'Red Gem Stone');
-		// gem.data.set('level', 2);
-		// gem.data.set('owner', 'Link');
-
-		// //  Whenever a data value is updated it will dispatch a changedata event
-		// gem.on('changedata', function (gameObject, key, value) {
-
-			// text.setText([
-				// 'Name: ' + gem.data.get('name'),
-				// 'Level: ' + gem.data.get('level'),
-				// 'Value: ' + gem.data.get('gold') + ' gold',
-				// 'Owner: ' + gem.data.get('owner')
-			// ]);
-
-		// });
-		
-		// //  Change the 'value' property when the mouse is clicked
-		// this.input.on('pointerdown', function () {
-
-			// var gold = gem.data.get('gold');
-
-			// if (!gold)
-			// {
-				// //  Set the value, this will emit the `setdata` and `changedata` events
-				// gem.data.set('gold', 50);
-
-				// text.setText([
-					// 'Name: ' + gem.data.get('name'),
-					// 'Level: ' + gem.data.get('level'),
-					// 'Value: ' + gem.data.get('gold') + ' gold',
-					// 'Owner: ' + gem.data.get('owner')
-				// ]);
-			// }
-			// else
-			// {
-				// //  Set the value, this will call the 'after' callback
-				// gem.data.set('gold', gold + 50);
-			// }
-
-		// });
-		
-		this.babka1.setOrigin(0,0);
-		this.babka1.flipX = true;
-		this.anims.create({
-			
-			key: "b1_anim",
-			frames: this.anims.generateFrameNumbers("b1"),
-			frameRate: 10,
-			repeat: -1,
-
-		});
-		this.anims.create({
-			
-			key: "b1_kill_anim",
-			frames: this.anims.generateFrameNumbers("b1kill"),
-			frameRate: 10,
-			repeat: 0,
-			hideOnComplete: true
-			
-		});
-		this.babka1.play("b1_anim");
-		this.babka1.setInteractive();
-		
-		// BABKA 2
-		this.babka2 = this.add.sprite(1171, 480, "b2");
-		this.babka2.flipX = true;
-		// this.babka2.setScale(1);
-		this.anims.create({
-			
-			key: "b2_anim",
-			frames: this.anims.generateFrameNumbers("b2"),
-			frameRate: 10,
-			repeat: -1,
-
-		});
-		this.anims.create({
-			
-			key: "b2_kill_anim",
-			frames: this.anims.generateFrameNumbers("b2kill"),
-			frameRate: 10,
-			repeat: 0,
-			hideOnComplete: true
-			
-		});
-		this.babka2.play("b2_anim");
-		this.babka2.setInteractive();
-		
-		// WYSWIETLANIE SAMOCHODU
-		this.furka = this.add.image(387, 515, "car");
-		this.furka.setOrigin(0,0);
-		
-		// WYSWIETLANIE SAMOCHODOW
-		this.furki = this.add.image(0, 508, "cars");
-		this.furki.setOrigin(0,0);
-		
-		// WYSWIETLANIE SMIETNIKA
-		this.smietnik = this.add.image(550, 430, "bin");
-		this.smietnik.setOrigin(0,0);
-		
-		// EVENT ODPULANIA MOHERA
-		this.input.on('gameobjectdown', this.killBot, this);
 		
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
@@ -153,7 +106,46 @@ class Scene2 extends Phaser.Scene {
 			delay: 0
 			
 		}
-		this.music.play(musicConfig);
+		var musicStatus = false;
+		//this.music.play(musicConfig);
+		
+		
+		var keys = [
+		
+			'Press A for Music',
+			'Press B for Drums',
+			'Press C for Percussion',
+			'Press D for Synth1',
+			'Press E for Synth2',
+			'Press F for Top1',
+			'Press G for Top2',
+			'',
+			'SPACE to stop all sounds'
+		
+		];
+
+		var text = this.add.text(10, 10, keys, { font: '32px Courier', fill: '#00ff00' });
+		
+		if (this.sound.locked) {
+			
+			text.setText('Click to start');
+
+			this.sound.once('unlocked', function () {
+				
+				text.setText(keys);
+				
+			});
+			
+		}
+		
+		this.input.keyboard.on('keydown-A', function () {
+			
+			this.music.play(musicConfig);
+			
+		});
+		
+		//https://phaser.io/examples/v3/view/audio/web-audio/play-sound-on-keypress
+		//https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
 	
 	}
 	// ARKOWA LEPSZA METODA ODPULANIA MOHERA - POPRAWIC BY DZIALALA
@@ -165,14 +157,20 @@ class Scene2 extends Phaser.Scene {
 		this.decapitationSound.play();
 		console.log('ZATLUKLES MOHERA!');
 	
-	}
+    }
+
 	// MOJA SZTYWNA METODA ODPULANIA MOHERA
-	killBot(pointer, gameObject) {
-		
-		gameObject.setTexture('b1kill');
-		gameObject.play('b1_kill_anim');
-		this.decapitationSound.play();
-		console.log('ZATLUKLES MOHERA!');
+    killBot(pointer, gameObject) {
+        
+        if (true) {
+            gameObject.setTexture('b1kill');
+            gameObject.play('b1_kill_anim');
+            this.decapitationSound.play();
+            console.log('ZATLUKLES MOHERA!');
+            //this.killed = true;
+        }
+        //console.log("killed: " + killed);
+        //console.log(this.killed)
 	
 	}
 	// SZTYWNA SCIEZKA RUCHU MOHERA1
@@ -216,7 +214,6 @@ class Scene2 extends Phaser.Scene {
 						
 						babka.x -= 1*speed;
 						babka.y -= 0.1*speed;
-						//babka1.rotate = true;
 			
 					}
 					
@@ -225,44 +222,28 @@ class Scene2 extends Phaser.Scene {
 		}
 				
 	}
-	// METODA LOSUJACA SCIEZKI DLA BOTA - NIE DZIALA
-	randomIntFromInterval(min, max) {
-		
-		return Math.floor(Math.random() * (max - min + 1) + min);
-		
-	}
+
  	update() {
-		// METODA LOSUJACA SCIEZKI DLA BOTA - NIE DZIALA C.D.
-		if (pathNumber == "x") {
-			
-			pathNumber = this.randomIntFromInterval(0, 1);
-			
-		}
-		// UKRYWANIE BABKI2 NA LEWO OD 374PX [KLATKA KOSAKA]
-		if (this.babka2.x < 374) {
-			
-			this.babka2.visible = false;
-			
-		}
+
+		
 		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
 			
 			this.babka1.visible = false;
 			
+		}
+		
+		// UKRYWANIE BABKI2 NA LEWO OD 374PX [KLATKA KOSAKA]
+		if (this.babka2.x < 374) {
+			
+			this.babka2.visible = false;
+			
 		} else {
 			
-			//console.log('po losowaniu: ' + pathNumber);
-			if (pathNumber == 0) {
+			if (true) {
 				
 				this.path1(this.babka2, 1);
 				this.path2(this.babka1, 1);
-				//console.log('wybrany path 1');
-				
-			} else {
-				
-				this.path2(this.babka1, 1);
-				this.path1(this.babka2, 1);
-				//console.log('wybrany path 2');
 			
 			}
 			
