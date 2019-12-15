@@ -229,14 +229,19 @@ class Scene2 extends Phaser.Scene {
 		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
 			
-			this.babka1.visible = false;
+			//this.babka1.visible = false;
+            this.babka1.x = 1170;
+            this.babka1.y = 490;
+
 			
 		}
 		
 		// UKRYWANIE BABKI2 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka2.x < 374) {
 			
-			this.babka2.visible = false;
+			//this.babka2.visible = false;
+            this.babka2.x = 1170;
+            this.babka2.y = 480;
 			
 		} else {
 			
