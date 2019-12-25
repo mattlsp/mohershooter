@@ -5,15 +5,17 @@ class Scene2 extends Phaser.Scene {
 		
 	}
     create() {
-
-        var store = [];
-
+		
         // SETUP TŁA
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
 
         // STATUS BAR
-        this.add.text(20, 670, "MUSIC: ?");
+        //this.musicSwitch = this.add.text(20, 670, "MUSIC");
+		//this.musicSwitch.setInteractive();
+		
+		
+		
         this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
 
         // BABKA 1
@@ -87,8 +89,6 @@ class Scene2 extends Phaser.Scene {
         }
         
         
-		
-		
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
 		
@@ -107,42 +107,28 @@ class Scene2 extends Phaser.Scene {
 			
 		}
 		var musicStatus = false;
-		this.music.play(musicConfig);
 		
+		var musicButton = this.add.text(20, 670, "MUSIC");
+		musicButton.setInteractive();
+		musicButton.on('pointerdown', () => {
+			if (musicStatus == false)
+			{
+				this.music.play(musicConfig);
+				//musicStatus = true;
+			}
+			//else
+			//{
+			//this.music.stop(musicConfig);
+			//}
+		}, this);
 		
-/*		var keys = [
-		
-			'Press A for Music',
-			'Press B for Drums',
-			'Press C for Percussion',
-			'Press D for Synth1',
-			'Press E for Synth2',
-			'Press F for Top1',
-			'Press G for Top2',
-			'',
-			'SPACE to stop all sounds'
-		
-		];
+		//this.input.on('pointerdown', this.startMusic, function (pointer) {
 
-		var text = this.add.text(10, 10, keys, { font: '32px Courier', fill: '#00ff00' });
-		
-		if (this.sound.locked) {
-			
-			text.setText('Click to start');
+			//console.log('down');
 
-			this.sound.once('unlocked', function () {
-				
-				text.setText(keys);
-				
-			});
-			
-		}
-		
-		this.input.keyboard.on('keydown-A', function () {
-			
-			this.music.play(musicConfig);
-			
-		});*/
+			//this.music.play(musicConfig);
+
+		//}, this);
 		
 		//https://phaser.io/examples/v3/view/audio/web-audio/play-sound-on-keypress
 		//https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
@@ -173,6 +159,12 @@ class Scene2 extends Phaser.Scene {
         //console.log(this.killed)
 	
 	}
+	
+	startMusic(pointer, gameObject){
+		console.log("kliknales w MUSIC");
+	}
+	
+	
 	// SZTYWNA SCIEZKA RUCHU MOHERA1
 	path1(babka, speed){
 		
