@@ -34,7 +34,7 @@ class Scene2 extends Phaser.Scene {
         this.anims.create({
 
             key: "b1_kill_anim",
-            frames: this.anims.generateFrameNumbers("b1kill"),
+            frames: this.anims.generateFrameNumbers("b1_kill"),
             frameRate: 10,
             repeat: 0,
             hideOnComplete: true
@@ -58,7 +58,7 @@ class Scene2 extends Phaser.Scene {
         this.anims.create({
 
             key: "b2_kill_anim",
-            frames: this.anims.generateFrameNumbers("b2kill"),
+            frames: this.anims.generateFrameNumbers("b2_kill"),
             frameRate: 10,
             repeat: 0,
             hideOnComplete: true
@@ -122,43 +122,19 @@ class Scene2 extends Phaser.Scene {
 			//}
 		}, this);
 		
-		//this.input.on('pointerdown', this.startMusic, function (pointer) {
-
-			//console.log('down');
-
-			//this.music.play(musicConfig);
-
-		//}, this);
-		
-		//https://phaser.io/examples/v3/view/audio/web-audio/play-sound-on-keypress
-		//https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
-	
 	}
-	// ARKOWA LEPSZA METODA ODPULANIA MOHERA - POPRAWIC BY DZIALALA
-	killBotArka(pointer, gameObject) {
+	
+	// LEPSZA METODA ODPULANIA MOHERA
+	killBot(pointer, gameObject) {
 		
 		var key = gameObject.texture.key;
-		gameObject.setTexture(key + 'kill');
-		gameObject.play(key + '_anim');
+		console.log(key);
+		gameObject.setTexture(key + '_kill');
+		gameObject.play(key + '_kill_anim');
 		this.decapitationSound.play();
 		console.log('ZATLUKLES MOHERA!');
 	
     }
-
-	// MOJA SZTYWNA METODA ODPULANIA MOHERA
-    killBot(pointer, gameObject) {
-        
-        if (true) {
-            gameObject.setTexture('b1kill');
-            gameObject.play('b1_kill_anim');
-            this.decapitationSound.play();
-            console.log('ZATLUKLES MOHERA!');
-            //this.killed = true;
-        }
-        //console.log("killed: " + killed);
-        //console.log(this.killed)
-	
-	}
 	
 	startMusic(pointer, gameObject){
 		console.log("kliknales w MUSIC");

@@ -14,7 +14,7 @@ class Scene1 extends Phaser.Scene {
 			frameHeight: 79,
 		});
 		
-		this.load.spritesheet("b1kill", "assets/images/babka1_kill.png",{
+		this.load.spritesheet("b1_kill", "assets/images/babka1_kill.png",{
 			frameWidth: 43,
 			frameHeight: 79
 		});
@@ -24,7 +24,7 @@ class Scene1 extends Phaser.Scene {
 			frameHeight: 98
 		});	
 
-		this.load.spritesheet("b2kill", "assets/images/babka2_kill.png",{
+		this.load.spritesheet("b2_kill", "assets/images/babka2_kill.png",{
 			frameWidth: 50,
 			frameHeight: 98
 		});
