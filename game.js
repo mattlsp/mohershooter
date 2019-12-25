@@ -10,5 +10,6 @@ var pathNumber = "x";
 var musicSwitch = true;
 let store = [];
 var game = new Phaser.Game(config);
+//test commitu
 
 
