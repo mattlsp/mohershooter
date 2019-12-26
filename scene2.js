@@ -11,7 +11,7 @@ class Scene2 extends Phaser.Scene {
         this.background.setOrigin(0, 0);
 		
 		
-        this.add.text(20, 670, "MoherShOOter v0.2 alpha. Odpulaj mohery xD", { font: '32px Consolas', fill: '#00ffff' });
+        this.add.text(20, 670, "MoherShOOter v0.2 alpha. Odpulaj mohery xD", { font: '32px Consolas', fill: '#00ff00' });
 		
         // BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -149,13 +149,13 @@ class Scene2 extends Phaser.Scene {
 		
 		var graphics = this.add.graphics();
 
-        var color = 0x284f54;
-        var alpha = 0.5 + ((10 / 10) * 0.5);
+        var color = 0x282954;
+        var alpha = 0.5 + (0.5);
     
         graphics.fillStyle(color, alpha);
-        graphics.fillRect(10, 12, 160, 70);
+        graphics.fillRect(10, 12, 150, 60);
 		
-		var musicButton = this.add.text(20, 20, "MUSIC", { font: '50px Consolas', fill: '#ffffff' });
+		var musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#ffffff' });
 		
 		musicButton.setInteractive();
 
@@ -164,13 +164,13 @@ class Scene2 extends Phaser.Scene {
 			{
 				this.music.play(musicConfig);
 				musicStatus = true;
-				musicButton = this.add.text(20, 20, "MUSIC", { font: '64px Consolas', fill: '#00ff00' });
+				musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#00ff00' });
 			}
 			else
 			{
 				this.music.pause(musicConfig);
 				musicStatus = false;
-				musicButton = this.add.text(20, 20, "MUSIC", { font: '64px Consolas', fill: '#ffffff' });
+				musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#ffffff' });
 			}
 		}, this);
 		
