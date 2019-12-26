@@ -153,9 +153,9 @@ class Scene2 extends Phaser.Scene {
         var alpha = 0.5 + ((10 / 10) * 0.5);
     
         graphics.fillStyle(color, alpha);
-        graphics.fillRect(10, 12, 195, 80);
+        graphics.fillRect(10, 12, 160, 70);
 		
-		var musicButton = this.add.text(20, 20, "MUSIC", { font: '64px Consolas', fill: '#ffffff' });
+		var musicButton = this.add.text(20, 20, "MUSIC", { font: '50px Consolas', fill: '#ffffff' });
 		
 		musicButton.setInteractive();
 
