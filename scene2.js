@@ -9,14 +9,8 @@ class Scene2 extends Phaser.Scene {
         // SETUP TŁA
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
-
-        // STATUS BAR
-        //this.musicSwitch = this.add.text(20, 670, "MUSIC");
-		//this.musicSwitch.setInteractive();
 		
-		
-		
-        this.add.text(20, 700, "MoherShooter v0.1 alpha. USTRZEL KONFITURE");
+        this.add.text(20, 700, "MoherShooter v0.2 alpha. USTRZEL KONFITURE");
 
         // BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -106,21 +100,30 @@ class Scene2 extends Phaser.Scene {
 			delay: 0
 			
 		}
+		
 		var musicStatus = false;
 		
-		var musicButton = this.add.text(20, 670, "MUSIC");
+		var musicButton = this.add.text(20, 20, "Muzyka", { font: '32px Consolas', fill: '#ffffff' });
+		
 		musicButton.setInteractive();
+
 		musicButton.on('pointerdown', () => {
 			if (musicStatus == false)
 			{
 				this.music.play(musicConfig);
-				//musicStatus = true;
+				musicStatus = true;
+				musicButton = this.add.text(20, 20, "Muzyka", { font: '32px Consolas', fill: '#00ff00' });
 			}
-			//else
-			//{
-			//this.music.stop(musicConfig);
-			//}
+			else
+			{
+				this.music.pause(musicConfig);
+				musicStatus = false;
+				musicButton = this.add.text(20, 20, "Muzyka", { font: '32px Consolas', fill: '#ffffff' });
+			}
 		}, this);
+		
+		//ladne wyswietlanie statusow
+		//https://labs.phaser.io/edit.html?src=src/components/data/set%20data%20event.js&v=3.21.0
 		
 	}
 	
@@ -192,7 +195,7 @@ class Scene2 extends Phaser.Scene {
 	}
 
  	update() {
-
+		
 		
 		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
