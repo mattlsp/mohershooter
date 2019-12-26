@@ -1,5 +1,6 @@
 class Scene1 extends Phaser.Scene {
 	constructor() {
+		
 		super("bootGame");
 		
 	}
@@ -8,6 +9,8 @@ class Scene1 extends Phaser.Scene {
 		this.load.image("car", "assets/images/car_118x117.png");
 		this.load.image("cars", "assets/images/cars_394x113.png");
 		this.load.image("bin", "assets/images/bin37x175.png");
+		
+		this.load.spritesheet('musicbutton', 'assets/buttons/button_sprite_sheet.png', { frameWidth: 189, frameHeight: 66 });
 		
 		this.load.spritesheet("b1", "assets/images/babka1.png",{
 			frameWidth: 43,
@@ -33,8 +36,9 @@ class Scene1 extends Phaser.Scene {
 		this.load.audio("music", ["assets/sounds/music.mp3", "assets/sounds/music.ogg"]);
 		
 	}
+	
 	create() {
-		//var killed = false;
+		
 		this.add.text(20, 20, "Loading MoherShooter v0.1 alpha...");
 		this.scene.start("playGame");
 		
