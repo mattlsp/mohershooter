@@ -1,5 +1,5 @@
 body { 
-	background-color: black;
+	background-image: linear-gradient(180deg, red, yellow);
 	margin: 0px;
 	padding: 0px;
 }
