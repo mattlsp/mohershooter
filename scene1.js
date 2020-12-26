@@ -6,6 +6,8 @@ class Scene1 extends Phaser.Scene {
 	}
 	preload() {
 		this.load.image("background", "assets/images/background1280x723.jpg");
+		this.load.image("donvito", "assets/images/donvito.jpg");
+		this.load.image("titlescreen", "assets/images/moher-title.jpg");
 		this.load.image("car", "assets/images/car_118x117.png");
 		this.load.image("cars", "assets/images/cars_394x113.png");
 		this.load.image("bin", "assets/images/bin37x175.png");
@@ -38,9 +40,15 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	create() {
+		this.background = this.add.image(0, 0, "donvito");
+		this.background.setOrigin(0, 0);
 		
-		this.add.text(20, 20, "Loading MoherShooter v0.1 alpha...");
-		this.scene.start("playGame");
+		this.input.on('pointerup', function (pointer) {
+
+            //this.scene.start("playGame");
+            this.scene.start("titleScreen");
+
+        }, this);
 		
 	}
 	
