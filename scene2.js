@@ -11,7 +11,7 @@ class Scene2 extends Phaser.Scene {
         this.background.setOrigin(0, 0);
 		
 		
-        this.add.text(20, 670, "MoherShOOter v0.2 alpha. Odpulaj mohery xD", { font: '32px Consolas', fill: '#00ff00' });
+        //this.add.text(20, 670, "MoherShOOter v0.2 alpha. Odpulaj mohery xD", { font: '32px Consolas', fill: '#00ff00' });
 		
         // BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -87,95 +87,6 @@ class Scene2 extends Phaser.Scene {
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
 		
-		// SETUP MUZYKI
-		this.music = this.sound.add("music");	
-		
-		var musicConfig = {
-			
-			mute: false,
-			volume: 0.2,
-			rate: 1,
-			detune: 0,
-			seek: 0,
-			loop: true,
-			delay: 0
-			
-		}
-		
-		// GRAFICZNY BUTTON DO MUZYKI-PRZY KLIKNIECIU SIE SYPIE (GRYZIE SIE Z PODMIANA TEXTURY PRZY KLIKNIECIU NA BOTA)
-		
-		var musicStatus = false;
-
-		/*this.musicButton = this.add.sprite(20, 20, 'musicbutton', 1).setInteractive();
-		this.musicButton.setOrigin(0, 0);
-		
-		this.musicButton.on('pointerdown', () => {
-			if (musicStatus == false)
-			{
-				this.music.play(musicConfig);
-				musicStatus = true;
-				this.musicButton.setFrame(0);
-				//wlaczona muza
-			}
-			else
-			{
-				this.music.pause(musicConfig);
-				musicStatus = false;
-				this.musicButton.setFrame(1);
-				//wylaczona muza
-			}
-		}, this);*/
-
-		/*this.musicButton.on('pointerover', function () {
-
-			this.setFrame(2);
-
-		});
-
-		this.musicButton.on('pointerout', function () {
-
-			this.setFrame(1);
-
-		});
-		
- 		this.musicButton.on('?', function () {
-
-			this.setFrame(0);
-
-		}); */
-		
-		
-		// TEKSTOWY BUTTON DO MUZY - DZIALA OK
-		
-		var graphics = this.add.graphics();
-
-        var color = 0x282954;
-        var alpha = 0.5 + (0.5);
-    
-        graphics.fillStyle(color, alpha);
-        graphics.fillRect(10, 12, 150, 60);
-		
-		var musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#ffffff' });
-		
-		musicButton.setInteractive();
-
-		musicButton.on('pointerdown', () => {
-			if (musicStatus == false)
-			{
-				this.music.play(musicConfig);
-				musicStatus = true;
-				musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#00ff00' });
-			}
-			else
-			{
-				this.music.pause(musicConfig);
-				musicStatus = false;
-				musicButton = this.add.text(20, 20, "MUSIC", { font: '40px Arial', fill: '#ffffff' });
-			}
-		}, this);
-		
-		//ladne wyswietlanie statusow
-		//https://labs.phaser.io/edit.html?src=src/components/data/set%20data%20event.js&v=3.21.0
 		
 	}
 	
