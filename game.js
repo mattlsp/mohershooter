@@ -8,7 +8,7 @@ var config = {
         height: 720
     },
     backgroundColor: 0x000000,
-	scene: [Scene1, TitleScreen, Scene2]
+	scene: [Loader, TitleScreen, LevelOne]
 		
 }
 
@@ -16,4 +16,3 @@ var game = new Phaser.Game(config);
 
 var babkaOdpulona = "false";
 
-//var button;

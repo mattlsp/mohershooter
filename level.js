@@ -1,17 +1,18 @@
-class Scene2 extends Phaser.Scene {
+class LevelOne extends Phaser.Scene {
 	constructor() {
-		
 		super("playGame");
 		
 	}
+
     create() {
-				
+
+		this.score = 0;
+		
         // SETUP TŁA
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
 		
-		
-        //this.add.text(20, 670, "MoherShOOter v0.2 alpha. Odpulaj mohery xD", { font: '32px Consolas', fill: '#00ff00' });
+		this.scoreDisplay = this.add.text(16,16, 'Score: 0', { font: '32px Consolas', fill: '#fff' });
 		
         // BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -78,16 +79,16 @@ class Scene2 extends Phaser.Scene {
         let odpulony = false;
         if (odpulony == false) {
             this.input.on('gameobjectdown', this.killBot, this)
+			
         }
         else {
             console.log("bot juz odpulony")
+			
         }
-        
         
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
-		
-		
+
 	}
 	
 	// LEPSZA METODA ODPULANIA MOHERA
@@ -97,8 +98,10 @@ class Scene2 extends Phaser.Scene {
 		gameObject.setTexture(key + '_kill');
 		gameObject.play(key + '_kill_anim');
 		this.decapitationSound.play();
-		babkaOdpulona = true;
-		console.log("bot odpulony: " + babkaOdpulona);
+		this.score+=10;
+		this.scoreDisplay.setText('Score: '+this.score);
+		//babkaOdpulona = true;
+		//console.log("bot odpulony: " + babkaOdpulona);
 	
     }
 		
@@ -121,6 +124,7 @@ class Scene2 extends Phaser.Scene {
 				}
 			
 		}
+
 				
 	}
 	// SZTYWNA SCIEZKA RUCHU BABKI2

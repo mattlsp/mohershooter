@@ -1,9 +1,10 @@
-class Scene1 extends Phaser.Scene {
+class Loader extends Phaser.Scene {
 	constructor() {
 		
 		super("bootGame");
 		
 	}
+
 	preload() {
 		this.load.image("background", "assets/images/background1280x723.jpg");
 		this.load.image("donvito", "assets/images/donvito.jpg");
@@ -17,21 +18,25 @@ class Scene1 extends Phaser.Scene {
 		this.load.spritesheet("b1", "assets/images/babka1.png",{
 			frameWidth: 43,
 			frameHeight: 79,
+			
 		});
 		
 		this.load.spritesheet("b1_kill", "assets/images/babka1_kill.png",{
 			frameWidth: 43,
 			frameHeight: 79
+			
 		});
 		
 		this.load.spritesheet("b2", "assets/images/babka2.png",{
 			frameWidth: 50,
 			frameHeight: 98
+			
 		});	
 
 		this.load.spritesheet("b2_kill", "assets/images/babka2_kill.png",{
 			frameWidth: 50,
 			frameHeight: 98
+			
 		});
 		
 		this.load.audio("sfx_babka_decapitated", ["assets/sounds/pyk.mp3", "assets/sounds/pyk.ogg"]);
@@ -42,12 +47,9 @@ class Scene1 extends Phaser.Scene {
 	create() {
 		this.background = this.add.image(0, 0, "donvito");
 		this.background.setOrigin(0, 0);
-		
 		this.input.on('pointerup', function (pointer) {
-
-            //this.scene.start("playGame");
             this.scene.start("titleScreen");
-
+			
         }, this);
 		
 	}
