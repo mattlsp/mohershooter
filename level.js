@@ -15,7 +15,7 @@ class LevelOne extends Phaser.Scene {
 		
 		this.scoreDisplay = this.add.text(16,16, 'Score: 0', { font: '32px Consolas', fill: '#fff' });
 		this.gameOverMessage = this.add.text(320,300, 'GAME OVER', { font: '128px Consolas', fill: '#ff0000' });
-		this.gameOverMessage2 = this.add.text(320,420, 'Click mouse to play again', { font: '46px Consolas', fill: '#ff0000' });
+		this.gameOverMessage2 = this.add.text(320,420, 'Click to play again', { font: '46px Consolas', fill: '#ff0000' });
 		this.gameOverMessage.visible = false;
 		this.gameOverMessage2.visible = false;
 		
