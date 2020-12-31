@@ -220,7 +220,7 @@ class LevelOne extends Phaser.Scene {
 					//this.scene.sound.setMute(mute);
 					this.stopBabka(this.babka1, 1);
 					this.stopBabka(this.babka2, 1);
-					this.input.on('pointerdown', () => this.scene.start("playGame"));
+					this.input.on('pointerdown', () => this.scene.restart());
 
 					
 				}
