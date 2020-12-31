@@ -14,8 +14,10 @@ class LevelOne extends Phaser.Scene {
         this.background.setOrigin(0, 0);
 		
 		this.scoreDisplay = this.add.text(16,16, 'Score: 0', { font: '32px Consolas', fill: '#fff' });
+		this.gameOverMessage = this.add.text(320,300, 'GAME OVER', { font: '128px Consolas', fill: '#ff0000' });
+		this.gameOverMessage.visible = false;
 		
-				// BABKA 1
+		// BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
 
         this.babka1.setOrigin(0, 0);
@@ -98,7 +100,6 @@ class LevelOne extends Phaser.Scene {
 		var key = gameObject.texture.key;
 		gameObject.setTexture(key + '_kill');
 		gameObject.play(key + '_kill_anim');
-		console.log(key);
 		gameObject.once('animationcomplete', () => {
 			gameObject.x = 1170;
             gameObject.y = 490;
@@ -167,7 +168,8 @@ class LevelOne extends Phaser.Scene {
 		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
 			
-			//this.babka1.visible = false;
+			this.score-=10;
+			this.scoreDisplay.setText('Score: '+this.score);
             this.babka1.x = 1170;
             this.babka1.y = 490;
 
@@ -176,7 +178,8 @@ class LevelOne extends Phaser.Scene {
 		// UKRYWANIE BABKI2 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka2.x < 374) {
 			
-			//this.babka2.visible = false;
+			this.score-=10;
+			this.scoreDisplay.setText('Score: '+this.score);
             this.babka2.x = 1170;
             this.babka2.y = 480;
 			
@@ -184,7 +187,11 @@ class LevelOne extends Phaser.Scene {
 			
 			// RUCH BABEK PO SCIEZKACH
 			if (true) {
-				
+				if (this.score < 0) {
+					this.gameOverMessage.visible = true;
+					this.game.sound.stopAll();
+					this.scene.pause();
+				}
 				this.path1(this.babka2, 1);
 				this.path2(this.babka1, 1);
 			
