@@ -13,11 +13,11 @@ class LevelOne extends Phaser.Scene {
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
 		
-		this.scoreDisplay = this.add.text(16,16, 'Score: 0', { font: '32px Consolas', fill: '#fff' });
-		this.gameOverMessage = this.add.text(320,300, 'GAME OVER', { font: '128px Consolas', fill: '#ff0000' });
-		this.gameOverMessage2 = this.add.text(320,420, 'Click to play again', { font: '46px Consolas', fill: '#ff0000' });
+		this.scoreDisplay = this.add.text(16,16, 'SCORE: 0', { font: '32px Arial Black', fill: '#00FF00', backgroundColor: '#0' });
+		this.gameOverMessage = this.add.text(640,350, 'GAME OVER', { font: '64px Arial Black', fill: '#00FF00', backgroundColor: '#0' });
+		this.gameOverMessage.setOrigin(0.5, 0.5);
+
 		this.gameOverMessage.visible = false;
-		this.gameOverMessage2.visible = false;
 		
 		// BABKA 1
         this.babka1 = this.add.sprite(1170, 490, "b1");
@@ -93,23 +93,7 @@ class LevelOne extends Phaser.Scene {
         
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
-		
-/* 		// SETUP MUZYKI
-		this.music = this.sound.add("music");	
-		
-		var musicConfig = {
-			
-			mute: false,
-			volume: 0.2,
-			rate: 1,
-			detune: 0,
-			seek: 0,
-			loop: true,
-			delay: 0
-			
-		} */
-		
-		//this.music.play(musicConfig);
+
         
 	}
 	
@@ -215,11 +199,11 @@ class LevelOne extends Phaser.Scene {
 			if (true) {
 				if (this.score < 0) {
 					this.gameOverMessage.visible = true;
-					this.gameOverMessage2.visible = true;
-					//this.game.sound.stopAll();
-					//this.scene.sound.setMute(mute);
 					this.stopBabka(this.babka1, 1);
 					this.stopBabka(this.babka2, 1);
+					this.scoreDisplay.visible = false;
+					this.babka1.visible = false;
+					this.babka2.visible = false;
 					this.input.on('pointerdown', () => this.scene.restart());
 
 					
