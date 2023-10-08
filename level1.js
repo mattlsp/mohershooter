@@ -12,8 +12,8 @@ class Level1 extends Phaser.Scene {
         this.background = this.add.image(0, 0, "background");
         this.background.setOrigin(0, 0);
 		
-		this.scoreDisplay = this.add.text(16,16, 'SCORE: 0', { font: '32px Verdana Bold', fill: '#00FF00', backgroundColor: '#0' });
-		this.gameOverMessage = this.add.text(640,350, 'GAME OVER', { font: '64px Verdana Bold', fill: '#00FF00', backgroundColor: '#0' });
+		this.scoreDisplay = this.add.text(16,16, 'SCORE: 0', { font: '32px Verdana', fill: '#00FF00', backgroundColor: '#0' });
+		this.gameOverMessage = this.add.text(640,350, 'GAME OVER', { font: '64px Verdana', fill: '#00FF00', backgroundColor: '#0' });
 		this.gameOverMessage.setOrigin(0.5, 0.5);
 
 		this.scoreDisplay.setPadding(10);
