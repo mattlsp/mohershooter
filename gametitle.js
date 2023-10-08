@@ -1,6 +1,6 @@
-class TitleScreen extends Phaser.Scene {
+class GameTitle extends Phaser.Scene {
 	constructor() {
-		super("titleScreen");
+		super("gameTitle");
 		
 	}
 	
@@ -25,12 +25,10 @@ class TitleScreen extends Phaser.Scene {
 		
 		this.input.on('pointerup', function (pointer) {
 			this.music.play(musicConfig);
-            this.scene.start("playGame");
+            this.scene.start("level1Title");
 
         }, this);
 		
 	}
 	
 }
-
-	

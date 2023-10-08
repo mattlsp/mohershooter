@@ -1,11 +1,10 @@
-class LevelOne extends Phaser.Scene {
+class Level1 extends Phaser.Scene {
 	constructor() {
-		super("playGame");
+		super("level1");
 		
 	}
 
     create() {
-
 		this.score = 0;
 		this.acceleration = 1;
 		
@@ -17,6 +16,8 @@ class LevelOne extends Phaser.Scene {
 		this.gameOverMessage = this.add.text(640,350, 'GAME OVER', { font: '64px Arial Black Arial-BoldMT', fill: '#00FF00', backgroundColor: '#0' });
 		this.gameOverMessage.setOrigin(0.5, 0.5);
 
+		this.scoreDisplay.setPadding(10);
+		this.gameOverMessage.setPadding(30);
 		this.gameOverMessage.visible = false;
 		
 		// BABKA 1
@@ -80,8 +81,6 @@ class LevelOne extends Phaser.Scene {
         this.smietnik = this.add.image(550, 430, "bin");
         this.smietnik.setOrigin(0, 0);
 
-
-
         // EVENT ODPULANIA MOHERA
         this.input.on('gameobjectdown', this.killBot, this)
 		
@@ -94,7 +93,6 @@ class LevelOne extends Phaser.Scene {
 		// SFX ODPULANIA MOHERA
 		this.decapitationSound = this.sound.add("sfx_babka_decapitated");
 
-        
 	}
 	
 	// METODA ODPULANIA MOHERA
@@ -102,17 +100,19 @@ class LevelOne extends Phaser.Scene {
 		
 		var key = gameObject.texture.key;
 		gameObject.setTexture(key + '_kill');
+		this.acceleration = this.acceleration - 1;
+		gameObject.disableInteractive();
 		gameObject.play(key + '_kill_anim');
 		gameObject.once('animationcomplete', () => {
+			this.acceleration = this.acceleration + 1.1;
+			gameObject.setInteractive();
 			gameObject.x = 1170;
             gameObject.y = 490;
 			gameObject.play(key + '_anim');
 		});
 		this.decapitationSound.play();
 		this.score+=10;
-		this.scoreDisplay.setText('Score: '+this.score);
-		this.acceleration = this.acceleration + 0.1;
-		
+		this.scoreDisplay.setText('Score: '+this.score);		
     }
 		
 	// SZTYWNA SCIEZKA RUCHU BABKI1
@@ -134,8 +134,7 @@ class LevelOne extends Phaser.Scene {
 				}
 			
 		}
-
-				
+		
 	}
 	// SZTYWNA SCIEZKA RUCHU BABKI2
 	path2(babka, speed){
@@ -167,14 +166,12 @@ class LevelOne extends Phaser.Scene {
 	}
 	
 	stopBabka(babka, speed){
-		
 		babka.x = 500;  
 		babka.y = 500; 
 		
 	}
 
  	update() {
-		
 		// UKRYWANIE BABKI1 NA LEWO OD 374PX [KLATKA KOSAKA]
 		if (this.babka1.x < 374) {
 			
@@ -195,7 +192,6 @@ class LevelOne extends Phaser.Scene {
 			
 		} else {
 			
-			// RUCH BABEK PO SCIEZKACH
 			if (true) {
 				if (this.score < 0) {
 					this.gameOverMessage.visible = true;
@@ -205,9 +201,9 @@ class LevelOne extends Phaser.Scene {
 					this.babka1.visible = false;
 					this.babka2.visible = false;
 					this.input.on('pointerdown', () => this.scene.restart());
-
 					
 				}
+				// RUCH BABEK PO SCIEZKACH
 				this.path1(this.babka2, 1);
 				this.path2(this.babka1, 1);
 			

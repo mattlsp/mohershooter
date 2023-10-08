@@ -1,7 +1,6 @@
-class Loader extends Phaser.Scene {
+class LoaderDonVito extends Phaser.Scene {
 	constructor() {
-		
-		super("bootGame");
+		super("loaderDonVito");
 		
 	}
 
@@ -46,7 +45,7 @@ class Loader extends Phaser.Scene {
 		this.background = this.add.image(0, 0, "donvito");
 		this.background.setOrigin(0, 0);
 		this.input.on('pointerup', function (pointer) {
-            this.scene.start("titleScreen");
+            this.scene.start("gameTitle");
 			
         }, this);
 		
